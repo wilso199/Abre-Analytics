@@ -106,8 +106,8 @@
 				$("#displayassessment").hide();
 				var building = $('#building').val();
 				building = btoa(building);
-				$("#chooseteacher").load( "modules/analytics/teacher_choices.php?building="+building );
-				$("#chooseclass").load( "modules/analytics/class_choices.php" );
+				$("#chooseteacher").load( "modules/<?php echo basename(__DIR__); ?>/teacher_choices.php?building="+building );
+				$("#chooseclass").load( "modules/<?php echo basename(__DIR__); ?>/class_choices.php" );
 			});
 				
 			//When the teacher is changed, update the classes		    	
@@ -116,7 +116,7 @@
 				$("#displayassessment").hide();
 				var teacher = $('#teacher').val();
 				teacher = btoa(teacher);
-				$("#chooseclass").load( "modules/analytics/class_choices.php?teacher="+teacher );
+				$("#chooseclass").load( "modules/<?php echo basename(__DIR__); ?>/class_choices.php?teacher="+teacher );
 			});
 			
 			//When the classes are changed, update the results
@@ -130,7 +130,7 @@
 				classcode = btoa(classcode);
 						    	
 				$("#topicLoader").show();			
-				$("#displayassessment").load('modules/analytics/assessment_display.php?assessment='+assessment+'&teachercode='+teacher+'&classcode='+classcode, function() {
+				$("#displayassessment").load('modules/<?php echo basename(__DIR__); ?>/assessment_display.php?assessment='+assessment+'&teachercode='+teacher+'&classcode='+classcode, function() {
 					$("#topicLoader").hide();
 					$("#displayassessment").show();
 				});
@@ -152,7 +152,7 @@
 					building = btoa(building);
 					
 					$("#topicLoader").show();			
-					$("#displayassessment").load('modules/analytics/assessment_display.php?assessment='+assessment+'&teachercode='+teacher+'&classcode='+classcode, function() {
+					$("#displayassessment").load('modules/<?php echo basename(__DIR__); ?>/assessment_display.php?assessment='+assessment+'&teachercode='+teacher+'&classcode='+classcode, function() {
 						$("#topicLoader").hide();
 						$("#displayassessment").show();
 					});

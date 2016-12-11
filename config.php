@@ -26,6 +26,9 @@
 	$drawerhidden=0;
 	$pageorder=2;
 	$pagetitle="Analytics";
+	$description="A data module for district administrators.";
+	$version="1.0.1";
+	$repo="abreio/Abre-Analytics";
 	$pageicon="trending_up";
 	$pagepath="analytics";
 	$pagerestrictions="student, staff";	

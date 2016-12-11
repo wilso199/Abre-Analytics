@@ -31,8 +31,8 @@
 				$('#loader').show();
 				$('#titletext').text('Analytics');
 				document.title = 'Analytics';
-				$('#content_holder').load('modules/analytics/assessment.php?id='+name, function() { init_page(); });
-				$('#modal_holder').load('modules/analytics/modals.php');			
+				$('#content_holder').load('modules/".basename(__DIR__)."/assessment.php?id='+name, function() { init_page(); });
+				$('#modal_holder').load('modules/".basename(__DIR__)."/modals.php');			
 			},
 			'analytics/teacher/?:name': function(name)
 			{
@@ -41,7 +41,7 @@
 				$('#loader').show();
 				$('#titletext').text('Analytics');
 				document.title = 'Analytics';
-				$('#content_holder').load('modules/analytics/teacher.php?id='+name, function() { init_page(); });
+				$('#content_holder').load('modules/".basename(__DIR__)."/teacher.php?id='+name, function() { init_page(); });
 			},";
 	}    
 ?>

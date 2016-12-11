@@ -193,7 +193,7 @@ $("#myTable").tablesorter();
 			$(".modal-content #teachername").text(Teacher_Name);
 			var Teacher_Code = $(this).data('teachercode');
 										
-			$( ".modal-content #teacherstudents" ).load( "modules/analytics/teacher.php?id="+Teacher_Code, function() {
+			$( ".modal-content #teacherstudents" ).load( "modules/<?php echo basename(__DIR__); ?>/teacher.php?id="+Teacher_Code, function() {
 				$("#loadingbar").hide();
 			});
 		});

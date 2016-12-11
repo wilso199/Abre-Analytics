@@ -69,14 +69,14 @@ ORDER BY `analytics_schedule`.`Course_Code`";
 						echo "<td>";
 							echo "<div id='assessment_$counter'>Loading...</div></div></div>";
 							echo "<script>";
-								echo "$('#assessment_$counter').load('modules/analytics/assessments_lookup.php?Student_ID=$Student_ID');";
+								echo "$('#assessment_$counter').load('modules/".basename(__DIR__)."/assessments_lookup.php?Student_ID=$Student_ID');";
 							echo "</script>";
 						echo "</td>";
 						//Find the students grades
 						echo "<td>";
 							echo "<div id='grade_$counter'>Loading...</div></div>";
 							echo "<script>";
-								echo "$('#grade_$counter').load('modules/analytics/grades_lookup.php?Student_ID=$Student_ID&Teacher_Code=$teachercode');";
+								echo "$('#grade_$counter').load('modules/".basename(__DIR__)."/grades_lookup.php?Student_ID=$Student_ID&Teacher_Code=$teachercode');";
 							echo "</script>";
 						echo "</td>";	
 					echo "</tr>";
@@ -96,8 +96,8 @@ ORDER BY `analytics_schedule`.`Course_Code`";
 			$(function()
 			{
 				$("#myTable").tablesorter( {sortList: [[0,0]]} );		
-				<?php echo "$('#downloadlink_csv').attr('href','/modules/analytics/export_csvteacher.php?teachercode=$teachercode');" ?>
-				<?php echo "$('#downloadlink_pdf').attr('href','/modules/analytics/export_pdfteacher.php?teachercode=$teachercode');" ?>
+				<?php echo "$('#downloadlink_csv').attr('href','/modules/".basename(__DIR__)."/export_csvteacher.php?teachercode=$teachercode');" ?>
+				<?php echo "$('#downloadlink_pdf').attr('href','/modules/".basename(__DIR__)."/export_pdfteacher.php?teachercode=$teachercode');" ?>
 			});	
 			
 		</script>
