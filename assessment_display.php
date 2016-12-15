@@ -97,6 +97,9 @@
 					<th>Proficient</th>
 					<th>Accelerated</th>
 					<th>Advanced</th>
+					<th>PI</th>
+					<th>EVAAS Rating</th>
+					<th>EVAAS Score</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -134,14 +137,53 @@
 							echo "<td><b>$Last_Name, $First_Name</b></a><p>$total_count_students Students Tested</p></td>";
 							if($total_count_students!=0)
 							{
-								echo "<td><b>".round(($perf1count/$total_count_students)*100)."%"."</b></td>";
-								echo "<td><b>".round(($perf2count/$total_count_students)*100)."%"."</b></td>";
-								echo "<td><b>".round(($perf3count/$total_count_students)*100)."%"."</b></td>";
-								echo "<td><b>".round(($perf4count/$total_count_students)*100)."%"."</b></td>";
-								echo "<td><b>".round(($perf5count/$total_count_students)*100)."%"."</b></td>";
+								$percentagelimited=round(($perf1count/$total_count_students)*100);
+								$percentagebasic=round(($perf2count/$total_count_students)*100);
+								$percentagepro=round(($perf3count/$total_count_students)*100);
+								$percentageaccelerated=round(($perf4count/$total_count_students)*100);
+								$percentageadvanced=round(($perf5count/$total_count_students)*100);
+								echo "<td><b>".$percentagelimited."%"."</b></td>";
+								echo "<td><b>".$percentagebasic."%"."</b></td>";
+								echo "<td><b>".$percentagepro."%"."</b></td>";
+								echo "<td><b>".$percentageaccelerated."%"."</b></td>";
+								echo "<td><b>".$percentageadvanced."%"."</b></td>";
+								
+								$limitedvalue=$percentagelimited*.3;
+								$basicvalue=$percentagebasic*.6;
+								$proficientvalue=$percentagepro*1;
+								$acceleratedvalue=$percentageaccelerated*1.1;
+								$advancedvalue=$percentageadvanced*1.2;								
+								$PI=$limitedvalue+$basicvalue+$proficientvalue+$acceleratedvalue+$advancedvalue;
+								
+								echo "<td><b>$PI</b></td>";
+								
+								//Find teacher stateid given localid
+								$Teacher_Code_Encrypt=encrypt($Teacher_Code, "");
+								$sqldir = "SELECT TeacherID, StateID FROM `directory` WHERE LocalId='$Teacher_Code_Encrypt' LIMIT 1";
+								$resultdir = $db->query($sqldir);
+								while($rowdir = $resultdir->fetch_assoc())
+								{
+									$stateid=$rowdir["StateID"];
+									$stateid=decrypt($stateid, "");
+									
+									//Find EVAAS Data
+									$sqlevaas = "SELECT * FROM `analytics_evaas` WHERE EducatorStateID='$stateid' LIMIT 1";
+									$resultevaas = $db->query($sqlevaas);
+									while($rowevaas = $resultevaas->fetch_assoc())
+									{
+										$EVAASRating=$rowevaas["EVAASRating"];
+										$EVAASIndex=$rowevaas["EVAASIndex"];
+									}
+								}
+								
+								echo "<td><b>$EVAASRating</b></td>";
+								echo "<td><b>$EVAASIndex</b></td>";
 							}
 							else
 							{
+								echo "<td><b>N/A</b></td>";
+								echo "<td><b>N/A</b></td>";
+								echo "<td><b>N/A</b></td>";
 								echo "<td><b>N/A</b></td>";
 								echo "<td><b>N/A</b></td>";
 								echo "<td><b>N/A</b></td>";

@@ -22,6 +22,9 @@
 	require(dirname(__FILE__) . '/../../core/abre_dbconnect.php');	
 	require_once(dirname(__FILE__) . '/../../core/abre_functions.php');	
 	
+	//Check for installation
+	if(superadmin()){ require('installer.php'); }
+	
 	$pageview=1;
 	$drawerhidden=0;
 	$pageorder=2;
