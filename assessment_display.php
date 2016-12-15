@@ -166,18 +166,30 @@
 									$stateid=$rowdir["StateID"];
 									$stateid=decrypt($stateid, "");
 									
-									//Find EVAAS Data
-									$sqlevaas = "SELECT * FROM `analytics_evaas` WHERE EducatorStateID='$stateid' LIMIT 1";
-									$resultevaas = $db->query($sqlevaas);
-									while($rowevaas = $resultevaas->fetch_assoc())
-									{
-										$EVAASRating=$rowevaas["EVAASRating"];
-										$EVAASIndex=$rowevaas["EVAASIndex"];
-									}
+									//Find EVAAS Rating
+									echo "<td><b>";
+										$sqlevaas = "SELECT * FROM `analytics_evaas` WHERE EducatorStateID='$stateid'";
+										$resultevaas = $db->query($sqlevaas);
+										while($rowevaas = $resultevaas->fetch_assoc())
+										{
+											$EVAASRating=$rowevaas["EVAASRating"];
+											$EVAASIndex=$rowevaas["EVAASIndex"];
+											echo "$EVAASRating<br>";
+										}
+									echo "</b></td>";
+									
+									//Find EVAAS Score
+									echo "<td><b>";
+										$sqlevaas = "SELECT * FROM `analytics_evaas` WHERE EducatorStateID='$stateid'";
+										$resultevaas = $db->query($sqlevaas);
+										while($rowevaas = $resultevaas->fetch_assoc())
+										{
+											$EVAASIndex=$rowevaas["EVAASIndex"];
+											$Test=$rowevaas["Test"];
+											echo "$EVAASIndex - $Test<br>";
+										}
+									echo "</b></td>";
 								}
-								
-								echo "<td><b>$EVAASRating</b></td>";
-								echo "<td><b>$EVAASIndex</b></td>";
 							}
 							else
 							{
