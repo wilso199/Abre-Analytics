@@ -29,7 +29,7 @@
 	$pageorder=2;
 	$pagetitle="Analytics";
 	$description="A data module for district administrators.";
-	$version="1.0.2";
+	$version="1.0.3";
 	$repo="abreio/Abre-Analytics";
 	$pageicon="trending_up";
 	$pagepath="analytics";
